@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Table</title>
+    <style>
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 15vh;
+        }
+
+        .heading {
+            padding: 15px;
+            background-color: cyan;
+        }
+
+        .table__day {
+            padding: 15px;
+            background-color: yellow;
+        }
+
+        th, td {
+            border: 2px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            background-color: goldenrod;
+        }
+
+        .table__data {
+            padding: 15px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .heading, .table__day, .table__data {
+                padding: 10px;
+                font-size: 14px;
+            }
+            th, td {
+                padding: 5px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .heading, .table__day, .table__data {
+                padding: 8px;
+                font-size: 12px;
+            }
+            th, td {
+                padding: 3px;
+            }
+
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            tr {
+                margin: 0 0 1rem 0;
+            }
+
+            tr:nth-child(odd) {
+                background: #ccc;
+            }
+
+            td {
+                border: none;
+                border-bottom: 1px solid #eee;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td:before {
+                position: absolute;
+                top: 50%;
+                left: 6px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                transform: translateY(-50%);
+                font-weight: bold;
+            }
+
+            td:nth-of-type(1):before { content: "Day"; }
+            td:nth-of-type(2):before { content: "9:30-10:30"; }
+            td:nth-of-type(3):before { content: "10:30-11:30"; }
+            td:nth-of-type(4):before { content: "11:30-12:30"; }
+            td:nth-of-type(5):before { content: "12:30-1:30"; }
+            td:nth-of-type(6):before { content: "1:30-2:00"; }
+            td:nth-of-type(7):before { content: "2:00-3:00"; }
+            td:nth-of-type(8):before { content: "3:00-4:00"; }
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th class="heading">Time</th>
+                <th class="heading" rowspan="2">9:30-10:30</th>
+                <th class="heading" rowspan="2">10:30-11:30</th>
+                <th class="heading" rowspan="2">11:30-12:30</th>
+                <th class="heading" rowspan="2">12:30-1:30</th>
+                <th class="heading" rowspan="2">1:30-2:00</th>
+                <th class="heading" rowspan="2">2:00-3:00</th>
+                <th class="heading" rowspan="2">3:00-4:00</th>
+            </tr>
+            <tr>
+                <th class="table__day">Day</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="table__day">Monday</td>
+                <td class="table__data" colspan="2">MIC-LAB</td>
+                <td class="table__data">MIC</td>
+                <td class="table__data">DAA</td>
+                <td class="table__data" rowspan="6" style="background-color: gray;">LUNCH</td>
+                <td class="table__data" colspan="2">DBMS-laB</td>
+            </tr>
+            <tr>
+                <td class="table__day">Tuesday</td>
+                <td class="table__data">DAA</td>
+                <td class="table__data">DWDM</td>
+                <td class="table__data">DBMS</td>
+                <td class="table__data">WET</td>
+                <td class="table__data">SE</td>
+                <td class="table__data">MIC</td>
+            </tr>
+            <tr>
+                <td class="table__day">Wednesday</td>
+                <td class="table__data">-</td>
+                <td class="table__data">DWDM</td>
+                <td class="table__data">WET</td>
+                <td class="table__data">MIC</td>
+                <td class="table__data">SE</td>
+                <td class="table__data">DAA</td>
+            </tr>
+            <tr>
+                <td class="table__day">Thursday</td>
+                <td class="table__data">DAA</td>
+                <td class="table__data">DBMS</td>
+                <td class="table__data">SE</td>
+                <td class="table__data">MIC</td>
+                <td class="table__data">DWDM</td>
+                <td class="table__data"></td>
+            </tr>
+            <tr>
+                <td class="table__day">Friday</td>
+                <td class="table__data" colspan="2">WET-LAB</td>
+                <td class="table__data">WET</td>
+                <td class="table__data">DBMS</td>
+                <td class="table__data">DWDM</td>
+                <td class="table__data"></td>
+            </tr>
+            <tr>
+                <td class="table__day">Saturday</td>
+                <td class="table__data"></td>
+                <td class="table__data">SE</td>
+                <td class="table__data">WET</td>
+                <td class="table__data">DBMS</td>
+                <td class="table__data" colspan="2">Project-LAB</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let cells = document.querySelectorAll("td, th");
+
+            cells.forEach(cell => {
+                cell.addEventListener("click", function() {
+                    alert(`You clicked on ${cell.innerText}`);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
